@@ -10,10 +10,10 @@ Landing page and installer for [mac-doctor](https://github.com/androidshashi/mac
 
 ```
 macdoctor-web/
-├── index.html          # Landing page (plain HTML, no framework)
 ├── public/
+│   ├── index.html      # Landing page (plain HTML, no framework)
 │   └── install.sh      # Installer script served at /install.sh
-└── vercel.json         # Headers config (Content-Type, no-cache for install.sh)
+└── vercel.json         # outputDirectory + headers config
 ```
 
 ## Deploy
