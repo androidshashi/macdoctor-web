@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MacDoctor — Free Up Mac Storage Fast</title>
+  <meta name="description" content="MacDoctor is a free CLI tool that finds what's secretly eating your Mac storage and helps you reclaim hundreds of GB in minutes." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --code-bg: #1c2128;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 64px 24px 48px;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 640px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* Hero */
+    .hero { text-align: center; display: flex; flex-direction: column; gap: 16px; }
+    .hero .icon { font-size: 56px; line-height: 1; }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; letter-spacing: -0.5px; }
+    .hero .tagline {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: var(--muted);
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(63, 185, 80, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(63, 185, 80, 0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Install block */
+    .install-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .install-header {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red   { background: #ff5f57; }
+    .dot.yellow { background: #febc2e; }
+    .dot.green { background: #28c840; }
+    .install-header span { margin-left: auto; font-size: 0.75rem; color: var(--muted); }
+
+    .install-body {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .install-body code {
+      flex: 1;
+      font-family: "SF Mono", ui-monospace, "Fira Code", monospace;
+      font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+      color: var(--accent);
+      word-break: break-all;
+    }
+    .copy-btn {
+      flex-shrink: 0;
+      background: var(--border);
+      color: var(--text);
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .copy-btn:hover { background: #484f58; }
+    .copy-btn.copied { background: rgba(63,185,80,0.2); color: var(--green); }
+
+    /* Features */
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .feature-card .emoji { font-size: 1.5rem; }
+    .feature-card strong { font-size: 0.9rem; color: var(--text); }
+    .feature-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* Cleans section */
+    .cleans-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cleans-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .cleans-list li .tag {
+      flex-shrink: 0;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: "SF Mono", ui-monospace, monospace;
+      font-size: 0.75rem;
+      padding: 1px 8px;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      body { padding: 40px 16px 40px; }
+      .install-body { flex-direction: column; align-items: stretch; }
+      .copy-btn { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="icon">🩺</div>
+      <h1>MacDoctor</h1>
+      <p class="tagline">Find what's secretly eating your Mac storage</p>
+      <div><span class="badge">✨ Free hundreds of GB in minutes</span></div>
+    </section>
+
+    <!-- Install command -->
+    <section>
+      <p class="section-title">Install</p>
+      <div class="install-block">
+        <div class="install-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span>Terminal</span>
+        </div>
+        <div class="install-body">
+          <code id="install-cmd">curl -sSL https://macdoctor.site/install.sh | bash</code>
+          <button class="copy-btn" onclick="copyCmd(this)">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section>
+      <p class="section-title">Why MacDoctor</p>
+      <div class="features">
+        <div class="feature-card">
+          <span class="emoji">🔍</span>
+          <strong>Deep Scan</strong>
+          <p>Finds hidden caches, logs, and bloat your Finder never shows.</p>
+        </div>
+        <div class="feature-card">
+          <span class="emoji">⚡️</span>
+          <strong>Instant Results</strong>
+          <p>No GUI, no loading screens — results in seconds.</p>
+        </div>
+        <div class="feature-card">
+          <span class="emoji">🛡️</span>
+          <strong>Safe by Default</strong>
+          <p>Shows you what it found before anything is touched.</p>
+        </div>
+        <div class="feature-card">
+          <span class="emoji">🆓</span>
+          <strong>Free &amp; Open Source</strong>
+          <p>MIT licensed. No telemetry, no subscriptions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What it cleans -->
+    <section>
+      <p class="section-title">What it finds</p>
+      <ul class="cleans-list">
+        <li><span class="tag">~/Library/Caches</span> App &amp; system cache files</li>
+        <li><span class="tag">node_modules</span> Abandoned npm/yarn installs</li>
+        <li><span class="tag">~/Library/Logs</span> Old log files from apps &amp; system</li>
+        <li><span class="tag">.gradle / .m2</span> Build tool artifact caches</li>
+        <li><span class="tag">Xcode derived</span> Simulator runtimes &amp; derived data</li>
+        <li><span class="tag">brew cache</span> Stale Homebrew downloads</li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <a href="https://github.com/androidshashi/macdoctor" target="_blank" rel="noopener">
+          ⭐ Star on GitHub
+        </a>
+        &nbsp;·&nbsp;
+        <a href="https://github.com/androidshashi/macdoctor/issues" target="_blank" rel="noopener">
+          Report an issue
+        </a>
+      </div>
+      <div>MIT License · Built for developers who value their disk space</div>
+    </footer>
+
+  </main>
+
+  <script>
+    function copyCmd(btn) {
+      const text = document.getElementById('install-cmd').textContent;
+      const mark = () => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(mark);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        mark();
+      }
+    }
+  </script>
+</body>
+</html>
