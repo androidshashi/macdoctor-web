@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BINARY_URL="https://raw.githubusercontent.com/androidshashi/macdoctor/main/mac-doctor"
+BINARY_URL="https://raw.githubusercontent.com/androidshashi/macdoctor/main/macdoctor"
 INSTALL_DIR="/usr/local/bin"
-BINARY_NAME="mac-doctor"
+BINARY_NAME="macdoctor"
 TMP_FILE="$(mktemp)"
 
 cleanup() {
@@ -28,7 +28,7 @@ echo ""
 echo "🩺  MacDoctor Installer"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  Find what's secretly eating your Mac storage."
-echo "  This will install 'mac-doctor' to $INSTALL_DIR/$BINARY_NAME"
+echo "  This will install 'macdoctor' to $INSTALL_DIR/$BINARY_NAME"
 echo ""
 
 # ── Confirmation ─────────────────────────────────────────────────────────────
@@ -45,7 +45,7 @@ case "$CONFIRM" in
 esac
 
 echo ""
-echo "  ⬇️  Downloading mac-doctor..."
+echo "  ⬇️  Downloading macdoctor..."
 
 if ! curl -fsSL "$BINARY_URL" -o "$TMP_FILE"; then
   echo ""
@@ -79,10 +79,10 @@ else
 fi
 
 echo ""
-echo "  ✅  mac-doctor installed successfully!"
+echo "  ✅  macdoctor installed successfully!"
 echo ""
 echo "  Run it now:"
-echo "     mac-doctor"
+echo "     macdoctor"
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""

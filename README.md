@@ -1,6 +1,6 @@
 # MacDoctor — Website
 
-Landing page and installer for [mac-doctor](https://github.com/androidshashi/macdoctor), a CLI tool that finds and cleans developer storage bloat on macOS.
+Landing page and installer for [macdoctor](https://github.com/androidshashi/macdoctor), a CLI tool that finds and cleans developer storage bloat on macOS.
 
 **Live site:** https://macdoctor.site
 
@@ -42,14 +42,14 @@ curl -sSL https://macdoctor.site/install.sh | bash
 2. Asks for confirmation before doing anything (reads from `/dev/tty` so it works correctly in a `curl | bash` pipe)
 3. Downloads the binary from GitHub
 4. Validates the downloaded file is non-empty and looks like an executable (Mach-O or shell script)
-5. Makes it executable and moves it to `/usr/local/bin/mac-doctor` (uses `sudo` only if needed)
+5. Makes it executable and moves it to `/usr/local/bin/macdoctor` (uses `sudo` only if needed)
 6. Cleans up the temp file on exit via `trap`, even on failure
 
 **It never deletes anything.**
 
 ---
 
-## mac-doctor CLI — what it does
+## macdoctor CLI — what it does
 
 > Version: **1.1.0**
 
@@ -71,10 +71,10 @@ Interactive storage analyzer and safe cleaner for macOS developers. Scans and op
 ### Usage
 
 ```bash
-mac-doctor               # Interactive menu
-mac-doctor --dry-run     # Preview what would be deleted, delete nothing
-mac-doctor --version     # Print version
-mac-doctor --help        # Print usage
+macdoctor               # Interactive menu
+macdoctor --dry-run     # Preview what would be deleted, delete nothing
+macdoctor --version     # Print version
+macdoctor --help        # Print usage
 ```
 
 ---
