@@ -164,6 +164,21 @@
       color: var(--accent);
     }
 
+    /* Results image */
+    .results-img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .results-caption {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .results-caption strong { color: var(--green); }
+
     /* Footer */
     footer {
       text-align: center;
@@ -252,6 +267,20 @@
         <li><span class="tag">Xcode derived</span> Simulator runtimes &amp; derived data</li>
         <li><span class="tag">brew cache</span> Stale Homebrew downloads</li>
       </ul>
+    </section>
+
+    <!-- Real results -->
+    <section>
+      <p class="section-title">Real results</p>
+      <img
+        src="/images/before-after.png"
+        alt="Mac storage before and after running macdoctor — Applications dropped from 356 GB to 28 GB"
+        class="results-img"
+        loading="lazy"
+      />
+      <p class="results-caption">
+        Applications folder: <s>356 GB</s> → <strong>28 GB</strong> freed in one run
+      </p>
     </section>
 
     <!-- Footer -->
